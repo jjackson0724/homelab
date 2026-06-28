@@ -47,7 +47,7 @@ Establish a network traffic baseline for the home lab environment using passive 
 | IP Address | Packets Sent | Packets Received | Identified As |
 |------------|-------------|-----------------|---------------|
 | 192.168.1.1 | 45,631 | 3 | Spectrum SAX2V1R Router/Gateway |
-| 192.168.1.35 | 90 | 45,712 | **PS5** (PlayStation Network streaming ports 12478/12488) |
+| 192.168.1.35 | 90 | 45,712 | PS5 at time of capture — IP subsequently reassigned to Zion Wi-Fi via DHCP (see Post-Analysis Correction) |
 | 192.168.1.47 | 8 | 0 | **Unknown** — requires follow-up investigation |
 | 192.168.1.196 | (Sentinel itself) | — | Sentinel — capture node |
 
@@ -85,11 +85,30 @@ The dominant traffic pattern (91% of all UDP traffic) was:
 
 **Finding:** Initial host identification of 192.168.1.35 as PS5 was correct at time of capture but required correction after post-capture investigation.
 
-**What changed:** Following the capture session, ipconfig /all on Zion revealed that 192.168.1.35 is currently assigned to Zion's Wi-Fi adapter (MediaTek Wi-Fi 6 MT7921). The PS5 had released its DHCP lease after being powered off, and the router subsequently reassigned 192.168.1.35 to Zion during a lease renewal.
+**What changed:** Following the capture session, `ipconfig /all` on Zion revealed that 192.168.1.35 is currently assigned to Zion's Wi-Fi adapter (MediaTek Wi-Fi 6 MT7921). The PS5 had released its DHCP lease after being powered off, and the router subsequently reassigned 192.168.1.35 to Zion during a lease renewal.
 
-**Critical lesson:** IP addresses on home networks are not reliable long-term device identifiers. MAC addresses are the correct identifier for persistent device attribution. The monitor bot should be updated to track MAC + IP pairs and alert on unexpected mapping changes.
+**Timeline reconstruction:**
+- During capture: PS5 held 192.168.1.35, actively streaming Netflix via UDP ports 12478/12488
+- PS5 powered off → DHCP lease released or expired
+- Zion Wi-Fi lease renewal → router assigned 192.168.1.35 to Zion
+- Post-capture: 192.168.1.35 now resolves to Zion, not PS5
 
-**Remediation:** Assign static DHCP leases to all known devices via router — PS5, Zion, Sentinel all get permanent IP assignments tied to their MAC addresses.
+**Confirmed evidence:** Zion's Wi-Fi lease expiration showed `June 28, 2026 11:24:01 AM` — a recent renewal consistent with acquiring a newly available IP address.
+
+**Critical lesson — Dynamic IP Identification:**
+
+IP addresses on home networks are not reliable long-term device identifiers. DHCP leases expire and IPs get reassigned. This is a fundamental forensic consideration:
+
+- **IP address** = temporary, unreliable for long-term attribution
+- **MAC address** = persistent hardware identifier, reliable for device attribution
+- **Hostname** = semi-reliable, can be spoofed
+
+**Implication for monitoring tools:** The homelab Discord monitor bot currently tracks devices by IP address. If a device's IP changes, the bot may misidentify it or generate false alerts for new devices that are actually known hosts with new IPs. A future improvement should track MAC address + IP pairs together and alert on MAC/IP mapping changes (ARP spoofing detection as a side benefit).
+
+**Remediation:**
+- Assign static DHCP leases to all known devices via router — PS5, Zion, Sentinel all get permanent IP assignments tied to their MAC addresses
+- Update monitor bot to track MAC + IP pairs instead of IP only
+- Alert on unexpected MAC/IP mapping changes as an ARP poisoning detection mechanism
 
 ---
 
@@ -115,7 +134,7 @@ DNS queries reveal application behavior even when payload traffic is encrypted. 
 
 ### Requires Investigation
 | Domain | Service | Finding |
-|--------|---------|---------|
+|--------|---------|---------| 
 | browser-intake-us5-datadoghq.com | DataDog telemetry | Unknown application sending usage telemetry to DataDog monitoring platform — source app not yet identified |
 | o1158394.ingest.us.sentry.io | Sentry error reporting | Application on Sentinel sending crash/error telemetry to Sentry — source app not yet identified |
 | wpad.lan | WPAD proxy discovery | Windows attempting Web Proxy Auto-Discovery on local network — no server responding, but represents attack surface (WPAD poisoning attack vector) |
@@ -157,6 +176,13 @@ DisableWpad = 1
 **Remediation:** Apply Windows telemetry hardening to Sentinel — disable DiagTrack service, configure telemetry registry keys, apply hosts file blocks.  
 **Status:** Open — scheduled for future hardening session.
 
+### Finding 5 — Dynamic IP Assignment Risk
+**Severity:** Low  
+**Description:** DHCP-assigned IPs on the home network are dynamic and can be reassigned between devices. During this analysis, 192.168.1.35 was initially identified as the PS5 but was later found to have been reassigned to Zion's Wi-Fi adapter after the PS5 powered off.  
+**Risk:** IP-based device tracking is unreliable. Security monitoring tools relying solely on IP addresses may misattribute traffic or miss device changes.  
+**Remediation:** Configure static DHCP leases for all known devices via router admin panel. Update monitor bot to track MAC + IP pairs.  
+**Status:** Open — remediation planned.
+
 ---
 
 ## TCP Port Analysis
@@ -188,7 +214,7 @@ This analysis exercise covers detection relevant to the following ATT&CK techniq
 ## Tools Used
 
 | Tool | Version | Purpose |
-|------|---------|---------|
+|------|---------|---------| 
 | Wireshark | 4.x | Live packet capture |
 | Npcap | 1.87 | Windows packet capture driver |
 | Python/Scapy | 3.x / latest | Automated PCAP statistical analysis |
@@ -199,6 +225,8 @@ This analysis exercise covers detection relevant to the following ATT&CK techniq
 ## Next Steps
 
 - [ ] Identify 192.168.1.47 via router DHCP table and MAC lookup
+- [ ] Configure static DHCP leases for all known devices via router (PS5, Zion, Sentinel)
+- [ ] Update monitor bot to track MAC + IP pairs instead of IP only
 - [ ] Disable WPAD on Sentinel via registry
 - [ ] Identify DataDog/Sentry telemetry source application
 - [ ] Apply Windows telemetry hardening to Sentinel
@@ -211,7 +239,9 @@ This analysis exercise covers detection relevant to the following ATT&CK techniq
 
 ## Conclusion
 
-This baseline capture successfully identified all active hosts on the home network, characterized normal traffic patterns, and surfaced four findings requiring remediation. The dominant traffic pattern (PS5 Netflix streaming) was identified through port analysis and packet signature characteristics — demonstrating the core skill of distinguishing normal from anomalous traffic.
+This baseline capture successfully identified all active hosts on the home network, characterized normal traffic patterns, and surfaced five findings requiring remediation. The dominant traffic pattern (PS5 Netflix streaming) was identified through port analysis and packet signature characteristics — demonstrating the core skill of distinguishing normal from anomalous traffic.
+
+A key post-analysis finding reinforced a fundamental forensic principle: IP addresses are dynamic and unreliable for long-term device attribution. MAC addresses must be used alongside IPs for accurate identification. This lesson directly informed remediation planning for the homelab monitor bot.
 
 The DNS query log proved to be the most intelligence-rich data source in this capture, revealing application behavior, telemetry destinations, and attack surface (WPAD) that would not be visible in encrypted payload analysis alone. This reinforces the value of DNS monitoring as a detection layer — a principle that will be implemented in Seraph (Wazuh) when the SIEM comes online.
 
