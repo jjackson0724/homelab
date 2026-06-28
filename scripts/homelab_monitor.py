@@ -25,14 +25,15 @@ DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1520590672510324747/aVhcv1NR
 
 HOSTNAME = socket.gethostname()  # auto-detects Zion or Sentinel
 
-# Honeyfiles to monitor — add as many as you want
 HONEYFILES = [
     r"C:\Users\Jarron\Documents\passwords_backup.txt",
     r"C:\Users\Jarron\Documents\banking_credentials.xlsx",
-    r"C:\Users\Jarron\Documents\VPN_credentials.docx",
+    r"C:\Users\Jarron\Desktop\VPN_credentials.docx",
     r"C:\Users\Jarron\Desktop\ssh_keys_backup.txt",
+    r"C:\Users\Jarron\Downloads\credentials.txt",
+    r"C:\Users\Jarron\AppData\Roaming\config_backup.ini",
+    r"C:\Users\Jarron\Documents\Finance\tax_returns_2025.pdf",
 ]
-
 # Network scan interval in seconds (300 = every 5 minutes)
 NETWORK_SCAN_INTERVAL = 300
 
