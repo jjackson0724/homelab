@@ -81,6 +81,18 @@ The dominant traffic pattern (91% of all UDP traffic) was:
 
 ---
 
+## Post-Analysis Correction — DHCP IP Reassignment (June 28, 2026)
+
+**Finding:** Initial host identification of 192.168.1.35 as PS5 was correct at time of capture but required correction after post-capture investigation.
+
+**What changed:** Following the capture session, ipconfig /all on Zion revealed that 192.168.1.35 is currently assigned to Zion's Wi-Fi adapter (MediaTek Wi-Fi 6 MT7921). The PS5 had released its DHCP lease after being powered off, and the router subsequently reassigned 192.168.1.35 to Zion during a lease renewal.
+
+**Critical lesson:** IP addresses on home networks are not reliable long-term device identifiers. MAC addresses are the correct identifier for persistent device attribution. The monitor bot should be updated to track MAC + IP pairs and alert on unexpected mapping changes.
+
+**Remediation:** Assign static DHCP leases to all known devices via router — PS5, Zion, Sentinel all get permanent IP assignments tied to their MAC addresses.
+
+---
+
 ## DNS Query Analysis
 
 DNS queries reveal application behavior even when payload traffic is encrypted. The following domains were resolved during the capture:
