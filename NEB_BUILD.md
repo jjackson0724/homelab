@@ -27,9 +27,11 @@ RGB theme: Matrix green (#00FF88) unified across all components via Corsair iCUE
 
 | Motherboard | ASRock X670E PG Lightning (AM5, ATX) | $209 |
 
-| RAM | Corsair Vengeance RGB 32GB DDR5-6000 CL36 | $480 |
+| RAM | Corsair Vengeance RGB 64GB (2x32GB) DDR5-6000 CL36 | \~$580 |
 
-| Storage | Samsung 990 Pro 2TB NVMe M.2 | $370 |
+| Storage 1 | Samsung 990 Pro 2TB NVMe M.2 (OS + VMs) | $370 |
+
+| Storage 2 | 2TB SATA SSD (Splunk logs + VM backups) | \~$80 |
 
 | GPU | MSI RTX 3060 Ventus 12GB (Oracle AI node) | $300 |
 
@@ -43,9 +45,9 @@ RGB theme: Matrix green (#00FF88) unified across all components via Corsair iCUE
 
 | GPU Mount | Vertical GPU mount bracket | $30 |
 
-| NIC | Intel I226 PCIe 2.5GbE (Amazon \~$35) | $35 |
+| NIC | Intel I226 PCIe 2.5GbE (Amazon) | \~$35 |
 
-| \*\*Total\*\* | | \*\*\~$2,111\*\* |
+| \*\*Total\*\* | | \*\*\~$2,291\*\* |
 
 
 
@@ -87,9 +89,11 @@ RGB theme: Matrix green (#00FF88) unified across all components via Corsair iCUE
 
 | Morpheus | Domain controller (Active Directory) | 4GB |
 
-| Seraph | Wazuh/Splunk SIEM node | 8GB |
+| Seraph | Wazuh/Splunk SIEM node | 16GB |
 
 | Trinity | Kali Linux attacker machine | 4GB |
+
+| Host reserve | Proxmox overhead | 4GB |
 
 
 
@@ -101,17 +105,39 @@ RGB theme: Matrix green (#00FF88) unified across all components via Corsair iCUE
 
 
 
-\- Boot drive: separate NVMe recommended when budget allows (\~$70 for 500GB)
+\- RAM: use 2x32GB kit only — AMD Ryzen 7000 memory controller runs 4x DDR5 DIMMs unstably at 6000MHz. Two slots populated = full speed + stability + room to expand later
 
-\- RAM: 32GB now, expand to 64GB when DDR5 prices drop
+\- GPU passthrough: enable IOMMU in BIOS (AMD SVM), blacklist Nvidia drivers on Proxmox host, configure VFIO so Oracle VM gets exclusive GPU access
 
-\- GPU passthrough: enable IOMMU in BIOS (AMD SVM), configure VFIO in Proxmox
+\- NIC: use Intel I226 add-in card for Proxmox bridging — ignore onboard Realtek RTL8125B
 
-\- NIC: use Intel I226 add-in card, ignore onboard Realtek RTL8125B for Proxmox bridging
+\- Storage 1: Samsung 990 Pro for Proxmox OS and VM images (fast NVMe)
+
+\- Storage 2: cheap 2TB SATA SSD dedicated to Splunk indices and VM backups — Splunk logs grow exponentially and will fill Storage 1 quickly without this
+
+\- Proxmox resource limits: set strict vCPU and RAM limits per VM so Seraph doesn't starve Oracle during heavy log indexing
 
 \- RGB: set all Corsair components to #00FF88 in iCUE for unified Matrix theme
 
 \- Proxmox ISO: flash to USB via Rufus on Zion, boot Neb from USB to install
+
+
+
+\---
+
+
+
+\## Architecture Notes 
+
+
+
+\- RTX 3060 12GB VRAM handles 7B and 13B parameter LLMs without offloading to system RAM
+
+\- Purple team pipeline: Morpheus (AD) feeds logs into Seraph (Wazuh/Splunk) while Trinity attacks and Sentinel is the target — mirrors real SOC infrastructure
+
+\- Zion manages Neb headlessly via browser (Proxmox web UI at https://192.168.x.x:8006)
+
+\- CPU contention expected under heavy load — mitigate with Proxmox resource limits per VM
 
 
 
@@ -149,5 +175,9 @@ https://pcpartpicker.com/list/xQcrMF
 
 \- \[ ] Seraph SIEM deployed
 
+\- \[ ] Trinity Kali configured
+
 \- \[ ] Matrix green RGB unified
+
+\- \[ ] Splunk log storage configured
 
