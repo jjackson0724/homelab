@@ -11,7 +11,7 @@ Query them using: `py C:\\Users\\Jarron\\matrix-homelab\\scripts\\skill_query.py
 ## Lab Phases
 
 ### Phase 1 — Current (Pre-June 29)
-- [ ] PCAP/C2 analysis (#16) — Zion/Trinity
+- [x ] PCAP/C2 analysis (#16) — Zion/Trinity
 - [ ] LLM prompt injection (#8) — Zion
 
 ### Phase 2 — Post-Course (July)
@@ -97,7 +97,7 @@ Query them using: `py C:\\Users\\Jarron\\matrix-homelab\\scripts\\skill_query.py
 ### Network Monitoring
 - [ ] deploying-zeek-network-monitoring
 - [ ] configuring-suricata-ids-alerts
-- [ ] performing-pcap-analysis-with-wireshark
+- [x ] performing-pcap-analysis-with-wireshark
 - [ ] building-network-baseline-with-zeek-logs
 
 ### SIEM & Log Management
