@@ -1,48 +1,85 @@
-# Cybersecurity Skills Roadmap
+﻿# Cybersecurity Skills Roadmap
+**Jarron Jackson | Matrix Homelab | SPC A.S. to B.A.S. | Purple Team Operator Track**
 
 754 structured cybersecurity skills installed at:
-`C:\Users\Jarron\.claude\skills\cybersecurity`
-
-Query them using: `py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py`
-
----
-
-## Lab Phases
-
-### Phase 1 — Current
-
-- [x] PCAP/C2 analysis (#16) — Sentinel/Wireshark
-- [ ] LLM prompt injection (#8) — Zion
-- [x] Purple team attack chain — Trinity self-recon complete (T1087.001, T1057, T1082, T1049); Sentinel attacks pending (T1003, T1053.005, T1562.001)
-
-### Phase 2 — Post-Black Hat (Neb Build Required)
-
-- [ ] Home SIEM (#1) — Seraph on Neb
-- [ ] Honeypot (#3) — Seraph on Neb
-- [ ] CALDERA automated attack chains — replace manual Atomic execution
-- [ ] Wazuh detection rules — retest all Phase 1 techniques with detection layer active
-- [ ] VECTR outcomes updated — before/after heatmap comparison
-
-### Phase 3 — Once Morpheus is Built
-
-- [ ] AD attack-and-defend (#14)
-- [ ] Malware reverse engineering (#5)
-- [ ] SigmaHQ contribution (#2) ← capstone
-
-### Phase 4 — Network Infrastructure (Neb-based)
-
-- [ ] Deploy OPNsense VM on Neb — sits between router and entire lab network
-- [ ] Configure Suricata IDS inside OPNsense
-- [ ] VLAN segmentation — isolate lab traffic from home network
-- [ ] Feed UTM logs into Seraph (Wazuh)
-- [ ] Place Honeypot behind UTM for realistic traffic analysis
+C:\Users\Jarron\.claude\skills\cybersecurity
+Query: py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py
 
 ---
 
-## Track 1 — Security+ Exam Prep
+## Phase 1 - Baseline and Recon (Current)
 
-### Cryptography & PKI
+- [x] Zion OS hardening - VeraCrypt FDE, firewall, UAC, audit logging
+- [x] PCAP analysis - 50k packets, Wireshark/Scapy, DNS analysis, WPAD exposure
+- [x] performing-purple-team-exercise
+- [x] performing-purple-team-atomic-testing
+- [x] performing-threat-emulation-with-atomic-red-team
+- [x] mapping-mitre-attack-techniques
+- [x] implementing-mitre-attack-coverage-mapping
+- [x] performing-pcap-analysis-with-wireshark
+- [ ] Sentinel Windows hardening
+- [ ] deploying-openvas-vulnerability-scanner
+- [ ] performing-vulnerability-scan-with-openvas
+- [ ] implementing-vulnerability-management-workflow
+- [ ] configuring-dvwa-for-web-app-testing
+- [ ] performing-sql-injection-attack
+- [ ] performing-xss-attack
+- [ ] performing-csrf-attack
+- [ ] configuring-iptables-firewall-rules
+- [ ] performing-password-attack-with-john-the-ripper
+- [ ] cracking-passwords-with-rainbow-tables
+- [ ] detecting-arp-poisoning-in-network-traffic
+- [ ] analyzing-syn-flood-attack
+- [ ] executing-red-team-exercise
 
+## Phase 2 - Exploitation (Pre-Neb)
+
+- [ ] performing-credential-dumping-t1003
+- [ ] implementing-scheduled-task-persistence-t1053
+- [ ] performing-security-tool-impairment-t1562
+- [ ] building-forensic-artifact-catalog
+- [ ] capturing-pcap-during-attack-chain
+- [ ] documenting-rules-of-engagement
+
+## Phase 3 - Detection Engineering (Post-Neb)
+
+- [ ] deploying-wazuh-siem
+- [ ] configuring-wazuh-agent-deployment
+- [ ] building-wazuh-detection-rules
+- [ ] deploying-caldera-adversary-emulation
+- [ ] configuring-caldera-attack-profiles
+- [ ] building-sigma-detection-rules
+- [ ] building-splunk-dashboards-for-threat-detection
+- [ ] implementing-log-aggregation-pipeline
+
+## Phase 4 - Enterprise Simulation (Post-Morpheus)
+
+- [ ] deploying-active-directory-domain-controller
+- [ ] deploying-active-directory-honeytokens
+- [ ] performing-kerberoasting-attack
+- [ ] performing-pass-the-hash-attack
+- [ ] performing-lateral-movement-techniques
+- [ ] implementing-honeypot-for-ransomware-detection
+- [ ] implementing-canary-tokens-for-network-intrusion
+- [ ] building-incident-response-playbook
+- [ ] performing-nist-csf-maturity-assessment
+
+## Phase 5 - Infrastructure Hardening
+
+- [ ] configuring-opnsense-firewall-rules
+- [ ] implementing-network-segmentation-with-vlans
+- [ ] configuring-ids-ips-with-suricata
+- [ ] configuring-suricata-ids-alerts
+- [ ] deploying-zeek-network-monitoring
+- [ ] building-network-baseline-with-zeek-logs
+- [ ] implementing-network-deception-with-honeypots
+- [ ] implementing-honeytokens-for-breach-detection
+
+---
+
+## Security+ Exam Prep Track
+
+### Cryptography and PKI
 - [ ] implementing-aes-encryption-for-data-at-rest
 - [ ] implementing-rsa-key-pair-management
 - [ ] implementing-digital-signatures-with-ed25519
@@ -51,43 +88,19 @@ Query them using: `py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py`
 - [ ] performing-ssl-tls-security-assessment
 
 ### Network Security
-
 - [ ] configuring-network-segmentation-with-vlans
 - [ ] configuring-pfsense-firewall-rules
 - [ ] implementing-dmarc-dkim-spf-email-security
 - [ ] detecting-arp-poisoning-in-network-traffic
 
-### Identity & Access
-
+### Identity and Access
 - [ ] configuring-multi-factor-authentication-with-duo
 - [ ] detecting-privilege-escalation-attempts
 - [ ] implementing-disk-encryption-with-bitlocker
 
 ---
 
-## Track 2 — Purple Team / Active Defense
-
-### Deception & Active Defense
-
-- [ ] deploying-active-directory-honeytokens
-- [ ] implementing-honeypot-for-ransomware-detection
-- [ ] implementing-honeytokens-for-breach-detection
-- [ ] implementing-canary-tokens-for-network-intrusion
-- [ ] deploying-decoy-files-for-ransomware-detection
-- [ ] implementing-deception-based-detection-with-canaries
-- [ ] performing-deception-technology-deployment
-- [ ] implementing-network-deception-with-honeypots
-
-### Purple Team Exercises
-
-- [x] performing-purple-team-exercise
-- [x] performing-purple-team-atomic-testing
-- [x] performing-threat-emulation-with-atomic-red-team
-- [ ] executing-red-team-exercise
-
----
-
-## Track 3 — ISC2 CC & NIST Framework Alignment
+## ISC2 CC Track
 
 - [ ] performing-nist-csf-maturity-assessment
 - [x] mapping-mitre-attack-techniques
@@ -98,36 +111,9 @@ Query them using: `py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py`
 
 ---
 
-## Track 4 — Lab Infrastructure & Network Architecture
+## Definition of Done
 
-### UTM / Firewall
-
-- [ ] configuring-opnsense-firewall-rules
-- [ ] configuring-pfsense-firewall-rules
-- [ ] implementing-network-segmentation-with-vlans
-- [ ] configuring-ids-ips-with-suricata
-
-### Network Monitoring
-
-- [ ] deploying-zeek-network-monitoring
-- [ ] configuring-suricata-ids-alerts
-- [x] performing-pcap-analysis-with-wireshark
-- [ ] building-network-baseline-with-zeek-logs
-
-### SIEM & Log Management
-
-- [ ] deploying-wazuh-siem
-- [ ] configuring-wazuh-agent-deployment
-- [ ] building-splunk-dashboards-for-threat-detection
-- [ ] implementing-log-aggregation-pipeline
-
----
-
-## How to Use
-
-1. Run `skill_query.py`
-2. Search for the skill name
-3. Ask it questions relevant to your current study topic
-4. Check off the skill when done
-5. Document which NIST CSF controls it maps to for portfolio evidence
-
+    [1] Execute  - Run the attack or deploy the control
+    [2] Validate - Confirm in logs, SIEM, or manual observation
+    [3] Document - Write markdown entry in appropriate folder
+    [4] Commit   - git add / commit / push to master
