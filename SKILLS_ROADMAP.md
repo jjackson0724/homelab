@@ -29,10 +29,9 @@ Query them using: `py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py`
 - [ ] Malware reverse engineering (#5)
 - [ ] SigmaHQ contribution (#2) ← capstone
 
-### Phase 4 — Network Infrastructure
+### Phase 4 — Network Infrastructure (Neb-based)
 
-- [ ] Source cheap mini PC with dual NICs ($50-100 eBay)
-- [ ] Install OPNsense UTM — sits between router and entire lab network
+- [ ] Deploy OPNsense VM on Neb — sits between router and entire lab network
 - [ ] Configure Suricata IDS inside OPNsense
 - [ ] VLAN segmentation — isolate lab traffic from home network
 - [ ] Feed UTM logs into Seraph (Wazuh)
@@ -131,3 +130,4 @@ Query them using: `py C:\Users\Jarron\matrix-homelab\scripts\skill_query.py`
 3. Ask it questions relevant to your current study topic
 4. Check off the skill when done
 5. Document which NIST CSF controls it maps to for portfolio evidence
+
