@@ -56,7 +56,7 @@ Query them using: `py C:\\Users\\Jarron\\matrix-homelab\\scripts\\skill_query.py
 
 ---
 
-## Track 2 — Purple Team / Active Defense (John Strand course June 29–July 2)
+## Track 2 — Purple Team / Active Defense 
 
 ### Deception & Active Defense
 - [ ] deploying-active-directory-honeytokens
@@ -69,17 +69,17 @@ Query them using: `py C:\\Users\\Jarron\\matrix-homelab\\scripts\\skill_query.py
 - [ ] implementing-network-deception-with-honeypots
 
 ### Purple Team Exercises
-- [ ] performing-purple-team-exercise
-- [ ] performing-purple-team-atomic-testing
-- [ ] performing-threat-emulation-with-atomic-red-team
+- [x ] performing-purple-team-exercise
+- [x ] performing-purple-team-atomic-testing
+- [x ] performing-threat-emulation-with-atomic-red-team
 - [ ] executing-red-team-exercise
 
 ---
 
 ## Track 3 — ISC2 CC & NIST Framework Alignment
 - [ ] performing-nist-csf-maturity-assessment
-- [ ] mapping-mitre-attack-techniques
-- [ ] implementing-mitre-attack-coverage-mapping
+- [x ] mapping-mitre-attack-techniques
+- [x ] implementing-mitre-attack-coverage-mapping
 - [ ] building-incident-response-playbook
 - [ ] performing-soc2-type2-audit-preparation
 - [ ] implementing-pci-dss-compliance-controls
