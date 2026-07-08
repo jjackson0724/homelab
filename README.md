@@ -4,6 +4,39 @@ Jarron Jackson | SPC Cybersecurity A.S. to B.A.S. | Purple Team Operator Track |
 
 ---
 
+
+## Lab Architecture
+
+```mermaid
+graph TD
+    subgraph Zion ["🖥️ Zion — Command Center (Dell Inspiron 14, Ryzen 7)"]
+        Trinity["Trinity\nKali Linux 2026.2\nAdversary Emulation"]
+        Architect["Architect\nWindows Server 2025\nTarget Environment"]
+    end
+
+    subgraph Neb ["⚡ Nebuchadnezzar — Proxmox Host (Parts Pending)"]
+        Oracle["Oracle\nOllama / vLLM\nRTX 3060 AI Node"]
+        Morpheus["Morpheus\nWindows Server AD\nDomain Controller"]
+        Seraph["Seraph\nWazuh + Splunk + MISP\nSIEM & Intel Platform"]
+        TrinityNeb["Trinity\nKali Linux\nAttack VM"]
+    end
+
+    Sentinel["🎯 Sentinel\nWindows 11\nAttack Target"]
+    Redirector["🔀 Redirector VM\nOPSEC Hop\nCovert Infrastructure"]
+
+    Trinity -->|"Atomic Red Team\nT1087 T1057 T1082 T1049"| Sentinel
+    Trinity -->|"Routes through"| Redirector
+    Redirector -->|"Forwards attack traffic"| Sentinel
+    Sentinel -->|"Logs & alerts"| Seraph
+    Architect -->|"Logs"| Seraph
+    Morpheus -->|"AD events"| Seraph
+    TrinityNeb -->|"Attack chain"| Morpheus
+    TrinityNeb -->|"Attack chain"| Sentinel
+    Zion -->|"Browser — Proxmox UI :8006"| Neb
+    Zion -->|"Browser — Open WebUI :3000"| Oracle
+    Seraph -->|"IoC events"| Seraph
+```
+
 ## Operational Metrics
 
 | Metric | Status |
