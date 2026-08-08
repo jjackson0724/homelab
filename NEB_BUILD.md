@@ -78,4 +78,69 @@ https://pcpartpicker.com/list/xQcrMF
 
 | VM | Role | RAM | vCPU |
 |---|---|---|---|
-| Oracle | AI inference — Ollama/vLLM + RTX 4070
+| Oracle | AI inference — Ollama/vLLM + RTX 4070 passthrough | 16GB | 4 |
+| Morpheus | Domain controller (Active Directory) | 4GB | 2 |
+| Seraph | Wazuh/Splunk SIEM + MISP | 8GB | 4 |
+| Trinity | Kali Linux attacker machine | 4GB | 2 |
+| Host reserve | Proxmox overhead | 4GB | — |
+
+---
+
+## Setup Notes
+
+- **RAM:** 2x32GB only — never use 4x16GB on AM5 DDR5-6000, causes instability
+- **GPU passthrough (Nvidia specific):** Enable IOMMU in BIOS (AMD SVM) → blacklist nouveau and nvidia drivers on Proxmox host → add to /etc/modprobe.d/blacklist.conf → configure VFIO → assign RTX 4070 to Oracle VM
+- **Nvidia blacklist commands:**
+```bash
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+echo "options vfio-pci ids=10de:XXXX" >> /etc/modprobe.d/vfio.conf
+update-initramfs -u
+```
+- **NIC:** Use Intel I226 add-in card for all Proxmox VM bridging — ignore onboard Realtek
+- **Docker:** Never run Docker on the Proxmox host — run inside Seraph VM or dedicated container VM
+- **Storage 1:** Samsung 990 Pro for Proxmox OS and VM images — check current pricing before ordering, WD Black SN850X 2TB (~$170) is a valid alternative
+- **Storage 2:** Budget NVMe for Splunk indices and VM backups — Splunk logs grow exponentially
+- **Resource limits:** Set strict vCPU and RAM limits per VM — Seraph/Splunk will starve Oracle without limits
+- **Proxmox install:** Flash ISO to USB via Rufus on Zion, boot Neb from USB
+- **RGB:** Set Geometric Future M5 fans to #00FF88 in L-Connect, set Corsair RAM to #00FF88 in iCUE
+
+---
+
+## Upgrade Path
+
+| Upgrade | Trigger | Cost |
+|---|---|---|
+| RAM 64GB → 128GB | DDR5 prices drop | ~$290 additional |
+| Storage 1 price check | Before ordering | May save $100-200 |
+
+---
+
+## AI Review History
+
+| Reviewer | Score | Key Feedback |
+|---|---|---|
+| Gemini | — | Flagged 4x16GB RAM instability — fixed with 2x32GB |
+| Third reviewer | — | Flagged X670E overkill, AIO unreliable 24/7, RAM overpriced — all fixed |
+| AI TWO | 7.5/10 | "Solid foundation, needs RAM gains" |
+| AI Overview | 8.5/10 | RTX 3060 holds back AI ambitions |
+| AI Overview (updated) | 9.5/10 | RTX 4070 upgrade — "completely transforms this machine" |
+
+---
+
+## Status Checklist
+
+- [ ] Parts sourced
+- [ ] Build complete
+- [ ] Proxmox installed
+- [ ] Oracle VM configured
+- [ ] GPU passthrough working (RTX 4070 — Nvidia blacklist required)
+- [ ] Morpheus DC deployed
+- [ ] Seraph SIEM deployed
+- [ ] MISP deployed on Seraph
+- [ ] Trinity Kali configured
+- [ ] Docker workloads running inside VMs (not on host)
+- [ ] Matrix green RGB unified
+- [ ] Splunk log storage configured
+- [ ] Intel NIC verified working in Proxmox
+- [ ] Resource limits set per VM
