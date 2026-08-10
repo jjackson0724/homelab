@@ -5,8 +5,8 @@ Structured intelligence collection feeding the CTI-to-Purple loop.
 
 ## Dedicated CTI Inbox
 
-Create: matrix-cti@proton.me (Proton Mail - free, encrypted)
-Purpose: All threat intel feeds land here, separate from personal email.
+CTI Inbox: jarron.jackson.sec@gmail.com
+Purpose: Dedicated security email - all threat intel feeds land here, separate from personal email.
 This becomes a searchable archive of every report, advisory, and IOC feed.
 
 ---
