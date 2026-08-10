@@ -129,6 +129,12 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
   #hero{padding-left:20px;padding-right:20px}
   footer{padding:24px 20px;flex-direction:column;gap:8px;text-align:center}
 }
+
+.hero-evidence{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-bottom:40px;padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ev-item{text-align:left}
+.ev-num{font-size:28px;font-weight:700;color:var(--green);line-height:1;margin-bottom:4px}
+.ev-label{font-size:10px;color:var(--mid);letter-spacing:0.05em;line-height:1.4}
+@media(max-width:768px){.hero-evidence{grid-template-columns:repeat(3,1fr);gap:12px}}
 .cursor::after{content:'_';animation:blink 1s step-end infinite;color:var(--green)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -156,6 +162,14 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
       <span>U.S. Army Veteran</span> · SPC Cybersecurity A.S. → B.A.S. ·
       Building toward purple teaming, threat hunting, and detection engineering.
     </p>
+    <div class="hero-evidence">
+      <div class="ev-item"><div class="ev-num">4</div><div class="ev-label">ATT&CK techniques executed</div></div>
+      <div class="ev-item"><div class="ev-num">5</div><div class="ev-label">YARA rules written</div></div>
+      <div class="ev-item"><div class="ev-num">4</div><div class="ev-label">Sigma rules written</div></div>
+      <div class="ev-item"><div class="ev-num">50k</div><div class="ev-label">packets analyzed</div></div>
+      <div class="ev-item"><div class="ev-num">9</div><div class="ev-label">node homelab</div></div>
+      <div class="ev-item"><div class="ev-num">P1</div><div class="ev-label">Phase 1 complete</div></div>
+    </div>
     <div class="hero-badges">
       <span class="badge green">Black Hat USA 2026 Scholar</span>
       <span class="badge">MITRE ATT&CK</span>
@@ -329,10 +343,10 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
       </div>
       <div class="phase-desc">Zion OS hardening, PCAP baseline analysis (50k packets), and execution of four Discovery techniques against Sentinel. Each technique produced a Diamond Model attribution report, YARA detection signature, and JA4/JA3 fingerprint.</div>
       <div class="phase-artifacts">
-        <span class="artifact done">T1087.001 — Local Account Discovery</span>
-        <span class="artifact done">T1057 — Process Discovery</span>
-        <span class="artifact done">T1082 — System Information Discovery</span>
-        <span class="artifact done">T1049 — Network Connection Discovery</span>
+        <a href="https://github.com/jjackson0724/homelab/blob/master/purple-team/T1087.001-local-account-discovery.md" target="_blank" style="text-decoration:none"><span class="artifact done" style="cursor:pointer;border:1px solid #333">T1087.001 — Local Account Discovery ↗</span></a>
+        <a href="https://github.com/jjackson0724/homelab/blob/master/purple-team/T1057-process-discovery.md" target="_blank" style="text-decoration:none"><span class="artifact done" style="cursor:pointer;border:1px solid #333">T1057 — Process Discovery ↗</span></a>
+        <a href="https://github.com/jjackson0724/homelab/blob/master/purple-team/T1082-system-information-discovery.md" target="_blank" style="text-decoration:none"><span class="artifact done" style="cursor:pointer;border:1px solid #333">T1082 — System Information Discovery ↗</span></a>
+        <a href="https://github.com/jjackson0724/homelab/blob/master/purple-team/T1049-network-connection-discovery.md" target="_blank" style="text-decoration:none"><span class="artifact done" style="cursor:pointer;border:1px solid #333">T1049 — Network Connection Discovery ↗</span></a>
         <span class="artifact done">Diamond Model ×4</span>
         <span class="artifact done">YARA Rules ×5</span>
         <span class="artifact done">Sigma Rules ×4</span>
@@ -558,9 +572,15 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
   </div>
   <div class="contact-grid">
     <div class="contact-left">
-      <p><span>Open to opportunities</span> in threat hunting, purple team operations, detection engineering, and CTI analysis — Tampa Bay or remote.</p>
-      <p>Currently completing the SPC Cybersecurity A.S., transitioning to the B.A.S. program. Currently seeking a cybersecurity internship with interest in roles leading to threat hunting, purple team operations, or detection engineering.</p>
-      <p>The homelab repo has the technical detail. <span>Start there.</span></p>
+      <p>Currently seeking a <span>cybersecurity internship</span> with interest in roles leading to threat hunting, purple team operations, or detection engineering.</p>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;color:var(--mid)">LOOKING FOR</div>
+        <div style="font-size:13px;color:var(--white)">Cybersecurity Internship · SOC · Detection Engineering · Threat Hunting · Purple Team</div>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;color:var(--mid)">WANT TO SEE THE WORK?</div>
+        <div style="font-size:13px;color:var(--white)">Start at the <a href="https://github.com/jjackson0724/homelab" target="_blank" style="color:var(--green);text-decoration:none;border-bottom:1px solid var(--green-dim)">GitHub repo →</a></div>
+      </div>
     </div>
     <div>
       <a class="contact-link" href="https://github.com/jjackson0724/homelab" target="_blank">
