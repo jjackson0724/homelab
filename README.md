@@ -63,6 +63,8 @@ graph TD
 | **Seraph** | SIEM / Log Engine + MISP | Wazuh + Elastic + MISP | Post-Neb |
 | **Morpheus** | Domain Controller | Windows Server + AD | Post-Neb |
 | **Oracle** | AI Inference Node | Ollama / vLLM + RTX 3060 | Post-Neb |
+| **Redirector** | OPSEC Infrastructure | VM | Simulated |
+| **The Construct** | Network Emulation and Pentest Lab | GNS3 on Proxmox | Planned - Post-Neb |
 
 Full Neb build spec: [NEB_BUILD.md](NEB_BUILD.md)
 
