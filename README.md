@@ -2,6 +2,8 @@
 
 Jarron Jackson | SPC Cybersecurity A.S. to B.A.S. | Purple Team Operator Track | Army Veteran
 
+**Portfolio:** [jjackson0724.github.io/homelab](https://jjackson0724.github.io/homelab)
+
 ---
 
 
@@ -41,7 +43,7 @@ graph TD
 
 | Metric | Status |
 |---|---|
-| Degree Progress | A.S. 20% — B.A.S. Planned |
+| Degree Progress | A.S. Final Semester — B.A.S. Planned |
 | ATT&CK Techniques Documented | 4 (T1087.001, T1057, T1082, T1049) |
 | Portfolio Artifacts Pushed | 12 |
 | Active Protective Baselines | 1/4 (Zion hardened) |
@@ -63,6 +65,7 @@ graph TD
 | **Seraph** | SIEM / Intel Platform / CTI Hub | Wazuh + Elastic + MISP + OpenCTI | Post-Neb |
 | **Morpheus** | Domain Controller | Windows Server + AD | Post-Neb |
 | **Oracle** | AI Inference Node | Ollama / vLLM + RTX 3060 | Post-Neb |
+| **Architect** | Target Environment | Windows Server 2025 | Active |
 | **Redirector** | OPSEC Infrastructure | VM | Simulated |
 | **The Construct** | Network Emulation and Pentest Lab | GNS3 on Proxmox | Planned - Post-Neb |
 
@@ -184,8 +187,10 @@ homelab/
 │   └── BLACK_HAT_PREP.md
 ├── scripts/              Automation and query tools
 │   └── skill_query.py
+├── sigma-rules/          Sigma detection rules mapped to ATT&CK Phase 1 techniques
+├── cti/                  CTI collection logs, threat actor library, finished intel
 ├── flowsint/             OSINT graph exploration tool
-├── NEB_BUILD.md          Nebuchadnezzar hardware spec (~$1,927)
+├── NEB_BUILD.md          Nebuchadnezzar hardware spec (~$2,200)
 ├── SKILLS_ROADMAP.md     754 skills across 4 learning tracks
 └── README.md             This file
 ```
