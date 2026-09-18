@@ -60,7 +60,7 @@ graph TD
 | **Trinity** | Adversary Emulation Platform | Kali Linux 2026.2 | Active |
 | **Sentinel** | Attack Target | Windows 11 | Hardening Pending |
 | **Nebuchadnezzar** | Proxmox Hypervisor | Proxmox VE | Parts Pending |
-| **Seraph** | SIEM / Log Engine + MISP | Wazuh + Elastic + MISP | Post-Neb |
+| **Seraph** | SIEM / Intel Platform / CTI Hub | Wazuh + Elastic + MISP + OpenCTI | Post-Neb |
 | **Morpheus** | Domain Controller | Windows Server + AD | Post-Neb |
 | **Oracle** | AI Inference Node | Ollama / vLLM + RTX 3060 | Post-Neb |
 | **Redirector** | OPSEC Infrastructure | VM | Simulated |
