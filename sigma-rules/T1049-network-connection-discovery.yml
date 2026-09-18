@@ -1,0 +1,37 @@
+﻿title: Network Connection Discovery via Netstat or PowerShell
+id: d4e5f6a7-b8c9-0123-defa-234567890123
+status: experimental
+description: Detects network connection enumeration via netstat or Get-NetTCPConnection associated with T1049.
+references:
+  - https://attack.mitre.org/techniques/T1049/
+author: Jarron Jackson - Matrix Homelab
+date: 2026-08-08
+tags:
+  - attack.discovery
+  - attack.t1049
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_netstat:
+    Image|endswith: '\netstat.exe'
+  selection_netstat_flags:
+    CommandLine|contains:
+      - 'netstat -an'
+      - 'netstat -ano'
+      - 'netstat -b'
+  selection_powershell:
+    CommandLine|contains:
+      - 'Get-NetTCPConnection'
+      - 'Get-NetUDPEndpoint'
+  condition: 1 of selection_*
+falsepositives:
+  - Network monitoring tools
+  - Help desk troubleshooting
+level: low
+notes: |
+  Log Sources: EventID 4688, Sysmon EID 1, PowerShell EID 4104
+  KQL: process.name: netstat.exe OR process.command_line: *Get-NetTCPConnection*
+  SPL: index=windows (Image=*netstat.exe OR CommandLine=*Get-NetTCPConnection*)
+  Zeek network-layer detection for C2 beaconing patterns in Phase 3.
+  Observed Phase 1 on Sentinel. Detection gap - Seraph pending Neb deployment.

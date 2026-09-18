@@ -1,0 +1,36 @@
+﻿title: Process Discovery via Tasklist WMIC or PowerShell
+id: b2c3d4e5-f6a7-8901-bcde-f12345678901
+status: experimental
+description: Detects process enumeration via tasklist, wmic process, or Get-Process associated with T1057.
+references:
+  - https://attack.mitre.org/techniques/T1057/
+author: Jarron Jackson - Matrix Homelab
+date: 2026-08-08
+tags:
+  - attack.discovery
+  - attack.t1057
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_tasklist:
+    Image|endswith: '\tasklist.exe'
+  selection_wmic:
+    CommandLine|contains:
+      - 'wmic process get'
+      - 'wmic process list'
+  selection_powershell:
+    CommandLine|contains:
+      - 'Get-Process'
+      - 'ps '
+      - 'gps '
+  condition: 1 of selection_*
+falsepositives:
+  - System monitoring tools
+  - EDR agents
+level: low
+notes: |
+  Log Sources: EventID 4688, Sysmon EID 1, PowerShell EID 4104
+  KQL: process.name: tasklist.exe OR process.command_line: *wmic process*
+  SPL: index=windows (Image=*tasklist.exe OR CommandLine=*wmic process*)
+  Observed Phase 1 on Sentinel. Detection gap - Seraph pending Neb deployment.
