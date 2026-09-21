@@ -232,19 +232,24 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
       <span>FIG. 01</span>
     </div>
     <svg id="node-svg" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="#1e1e1e" stroke-width="1" fill="none">
+      <defs>
+        <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#444"/>
+        </marker>
+      </defs>
+      <g stroke="#333" stroke-width="1" fill="none" marker-end="url(#arrow)">
         <line x1="450" y1="210" x2="450" y2="60"/>
-        <text x="462" y="135" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="start">Proxmox UI</text>
+        <text x="462" y="135" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="start">hypervisor mgmt</text>
         <line x1="450" y1="210" x2="160" y2="120"/>
         <line x1="450" y1="210" x2="740" y2="120"/>
         <line x1="450" y1="210" x2="120" y2="280"/>
-        <text x="270" y="238" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(-25 270 238)">attack traffic</text>
+        <text x="270" y="238" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(-25 270 238)">attack traffic</text>
         <line x1="450" y1="210" x2="780" y2="280"/>
-        <text x="630" y="238" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(25 630 238)">telemetry</text>
+        <text x="630" y="238" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(25 630 238)">telemetry</text>
         <line x1="450" y1="210" x2="200" y2="360"/>
-        <text x="310" y="295" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(-35 310 295)">C2 routing</text>
+        <text x="310" y="295" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(-35 310 295)">C2 routing</text>
         <line x1="450" y1="210" x2="700" y2="360"/>
-        <text x="590" y="295" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(35 590 295)">AI queries</text>
+        <text x="590" y="295" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle" transform="rotate(35 590 295)">AI queries</text>
         <line x1="450" y1="210" x2="450" y2="370"/>
         <line x1="450" y1="60" x2="160" y2="120" stroke="#00ff88" stroke-width="0.5" stroke-dasharray="4,4"/>
         <line x1="450" y1="60" x2="740" y2="120" stroke="#00ff88" stroke-width="0.5" stroke-dasharray="4,4"/>
@@ -253,19 +258,19 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
         <rect x="380" y="182" width="140" height="56" fill="#1a1a1a" stroke="#00ff88" stroke-width="1.5" rx="2"/>
         <text x="450" y="204" fill="#00ff88" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">ZION</text>
         <text x="450" y="220" fill="#888" font-family="JetBrains Mono" font-size="9" text-anchor="middle">operator workstation</text>
-        <text x="450" y="232" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows 11 · Ryzen 7</text>
+        <text x="450" y="232" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows 11 · Ryzen 7</text>
       </g>
       <g class="node" data-name="NEBUCHADNEZZAR" data-role="Proxmox Hypervisor Host" data-os="Proxmox VE" data-status="Build Pending — RTX 3060 · Primary lab host">
         <rect x="370" y="28" width="160" height="52" fill="#111" stroke="#333" stroke-width="1" rx="2"/>
         <text x="450" y="48" fill="#888" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">NEBUCHADNEZZAR</text>
-        <text x="450" y="62" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">proxmox hypervisor</text>
+        <text x="450" y="62" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">proxmox hypervisor</text>
         <text x="450" y="74" fill="#333" font-family="JetBrains Mono" font-size="8" text-anchor="middle">BUILD PENDING</text>
       </g>
       <g class="node" data-name="TRINITY" data-role="Adversary Emulation Node" data-os="Kali Linux 2026.2" data-status="Active — Atomic Red Team · Caldera · Mythic C2">
         <rect x="80" y="92" width="160" height="52" fill="#1a1a1a" stroke="#00ff88" stroke-width="1" rx="2"/>
         <text x="160" y="114" fill="#00ff88" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">TRINITY</text>
         <text x="160" y="128" fill="#888" font-family="JetBrains Mono" font-size="9" text-anchor="middle">adversary emulation</text>
-        <text x="160" y="140" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Kali Linux 2026.2</text>
+        <text x="160" y="140" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Kali Linux 2026.2</text>
       </g>
       <g class="node" data-name="SERAPH" data-role="SIEM, Intel Platform and CTI Hub" data-os="Wazuh + Elastic + MISP + OpenCTI" data-status="Planned — Post-Nebuchadnezzar · Detection engineering hub">
         <rect x="660" y="92" width="160" height="52" fill="#111" stroke="#333" stroke-width="1" rx="2"/>
@@ -289,13 +294,13 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
         <rect x="120" y="336" width="160" height="52" fill="#1a1a1a" stroke="#00ff88" stroke-width="1" rx="2"/>
         <text x="200" y="358" fill="#00ff88" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">SENTINEL</text>
         <text x="200" y="372" fill="#888" font-family="JetBrains Mono" font-size="9" text-anchor="middle">attack target</text>
-        <text x="200" y="384" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows 11</text>
+        <text x="200" y="384" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows 11</text>
       </g>
       <g class="node" data-name="ARCHITECT" data-role="Target Environment" data-os="Windows Server 2025" data-status="Active — Enterprise target · Docker · Cloud simulation">
         <rect x="620" y="336" width="160" height="52" fill="#1a1a1a" stroke="#00ff88" stroke-width="1" rx="2"/>
         <text x="700" y="358" fill="#00ff88" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">ARCHITECT</text>
         <text x="700" y="372" fill="#888" font-family="JetBrains Mono" font-size="9" text-anchor="middle">target environment</text>
-        <text x="700" y="384" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows Server 2025</text>
+        <text x="700" y="384" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Windows Server 2025</text>
       </g>
       <g class="node" data-name="REDIRECTOR" data-role="OPSEC Infrastructure" data-os="VM" data-status="Simulated — Covert C2 routing · Traffic obfuscation">
         <rect x="370" y="340" width="160" height="52" fill="#111" stroke="#333" stroke-width="1" rx="2"/>
@@ -307,7 +312,7 @@ footer{max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;justify-con
       <g class="node" data-name="THE CONSTRUCT" data-role="Network Emulation and Pentest Lab" data-os="GNS3 on Proxmox" data-status="Planned - Post-Neb. OPNsense firewall, Cisco routers, Suricata IDS, Zeek. Sits between Trinity and targets for realistic purple team exercises.">
         <rect x="440" y="290" width="140" height="52" fill="#111" stroke="#333" stroke-width="1" rx="2"/>
         <text x="510" y="308" fill="#888" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">THE CONSTRUCT</text>
-        <text x="510" y="322" fill="#444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">network emulation</text>
+        <text x="510" y="322" fill="#888" font-family="JetBrains Mono" font-size="8" text-anchor="middle">network emulation</text>
         <text x="510" y="334" fill="#333" font-family="JetBrains Mono" font-size="8" text-anchor="middle">GNS3 on Proxmox</text>
       </g>
 
